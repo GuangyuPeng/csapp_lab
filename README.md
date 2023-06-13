@@ -4,4 +4,4 @@
 
 ## 目录
 
-* [`shlab/`](/shlab/)：shell实验。实现一个简易shell程序tsh（Tiny shell）。
+* [`shlab/`](/shlab/)：shell实验。C语言实现一个简易shell程序tsh（Tiny shell）。

@@ -1,4 +1,4 @@
-# :shell: TinyShell 设计文档
+# :shell: TinyShell 说明文档
 
 ## 功能说明
 
@@ -24,6 +24,24 @@ TinyShell是一个简易版的shell程序，对应的可执行程序为`tsh`。
 
 要保证shell功能的正确，`tsh`需要处理相关的UNIX信号。`tsh`能够通过ctrl-C或ctrl-Z来终止或暂停前台任务。这是通过处理SIGINT或SIGTSTP信号实现的。`tsh`需要实时跟踪所有子进程状态的变化，从而更新任务的正确状态，保证任务管理功能的正确性。这是通过妥善处理SIGCHLD信号实现的。
 
+## 使用方法
+
+1. 运行`tsh`
+
+    ```shell
+    make
+    ./bin/tsh
+    ```
+2. 运行测试样例
+    
+    ```shell
+    make
+    make test01
+    make test02
+    # ...
+    make test16
+    ```
+
 ## 系统设计
 
 ### 多进程结构
@@ -48,6 +66,18 @@ TinyShell是一个简易版的shell程序，对应的可执行程序为`tsh`。
 * SIGINT：在jobs列表中查询当前前台进程，若存在前台进程，则向其发送SIGINT信号。
 * SIGTSTP：在jobs列表中查询当前前台进程，若存在前台进程，则向其发送SIGTSTP信号。
 * SIGCHLD：使用wait系统调用函数族回收所有终止的子进程，并删除这些子进程在jobs列表中对应的任务；使用wait系统调用函数族识别出所有暂停或继续运行的子进程，并更新这些子进程在jobs列表中对应的任务的状态。
+
+### 文件说明
+
+* `tsh.c`：tiny shell源代码
+* `bin/tshref`：参考的`tsh`可执行文件`tshref`
+* `util/sdriver.pl`：`tsh`测试程序
+* `traces/trace*.txt`：测试用例文件，作为`tsh`测试程序的输入
+* `traces/tshref.txt`：`tshref`输出的参考测试用例结果
+* `myspin.c`：接收参数<n>并睡眠<n>秒
+* `mysplit.c`：Fork一个睡眠<n>秒的子进程
+* `mystop.c`：睡眠<n>秒后向自身发送SIGTSTP信号
+* `myint.c`：睡眠<n>秒后向自身发送SIGINT信号
 
 ## 技术目标
 
