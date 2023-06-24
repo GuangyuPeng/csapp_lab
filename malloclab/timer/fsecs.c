@@ -20,7 +20,7 @@ void init_fsecs(void) {
 
 #if USE_FCYC
   if (verbose)
-	  printf("Measuring performance with a cycle counter.\n");
+    printf("Measuring performance with a cycle counter.\n");
 
   /* set key parameters for the fcyc package */
   set_fcyc_maxsamples(20); 
@@ -31,10 +31,10 @@ void init_fsecs(void) {
   Mhz = mhz(verbose > 0);
 #elif USE_ITIMER
   if (verbose)
-	  printf("Measuring performance with the interval timer.\n");
+    printf("Measuring performance with the interval timer.\n");
 #elif USE_GETTOD
   if (verbose)
-	  printf("Measuring performance with gettimeofday().\n");
+    printf("Measuring performance with gettimeofday().\n");
 #endif
 }
 

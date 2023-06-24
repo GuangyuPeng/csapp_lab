@@ -36,9 +36,9 @@ static unsigned cyc_lo = 0;
    Implementation requires assembly code to use the rdtsc instruction. */
 void access_counter(unsigned *hi, unsigned *lo) {
   asm("rdtsc; movl %%edx,%0; movl %%eax,%1"   /* Read cycle counter */
-	    : "=r" (*hi), "=r" (*lo)                /* and move results to */
-	    : /* No input */                        /* the two outputs */
-	    : "%edx", "%eax");
+      : "=r" (*hi), "=r" (*lo)                /* and move results to */
+      : /* No input */                        /* the two outputs */
+      : "%edx", "%eax");
 }
 
 /* Record the current value of the cycle counter. */
@@ -208,16 +208,16 @@ static void callibrate(int verbose) {
   start_counter();
   oldt = get_counter();
   while (e <NEVENT) {
-	  double newt = get_counter();
+    double newt = get_counter();
 
-	  if (newt-oldt >= THRESHOLD) {
-	    clock_t newc;
-	    times(&t);
-	    newc = t.tms_utime;
-	    if (newc > oldc) {
-		    double cpt = (newt-oldt)/(newc-oldc);
-		    if ((cyc_per_tick == 0.0 || cyc_per_tick > cpt) && cpt > RECORDTHRESH)
-		      cyc_per_tick = cpt;
+    if (newt-oldt >= THRESHOLD) {
+      clock_t newc;
+      times(&t);
+      newc = t.tms_utime;
+      if (newc > oldc) {
+        double cpt = (newt-oldt)/(newc-oldc);
+        if ((cyc_per_tick == 0.0 || cyc_per_tick > cpt) && cpt > RECORDTHRESH)
+          cyc_per_tick = cpt;
         /*
         if (verbose)
           printf("Saw event lasting %.0f cycles and %d ticks.  Ratio = %f\n",
@@ -225,12 +225,12 @@ static void callibrate(int verbose) {
         */
         e++;
         oldc = newc;
-	    }
-	    oldt = newt;
-	  }
+      }
+      oldt = newt;
+    }
   }
   if (verbose)
-	  printf("Setting cyc_per_tick to %f\n", cyc_per_tick);
+    printf("Setting cyc_per_tick to %f\n", cyc_per_tick);
 }
 
 static clock_t start_tick = 0;

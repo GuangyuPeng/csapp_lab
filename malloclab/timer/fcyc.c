@@ -49,11 +49,11 @@ static double *samples = NULL;
  */
 static void init_sampler() {
   if (values)
-	  free(values);
+    free(values);
   values = calloc(kbest, sizeof(double));
 #if KEEP_SAMPLES
   if (samples)
-	  free(samples);
+    free(samples);
   /* Allocate extra for wraparound analysis */
   samples = calloc(maxsamples+kbest, sizeof(double));
 #endif
@@ -66,8 +66,8 @@ static void init_sampler() {
 static void add_sample(double val) {
   int pos = 0;
   if (samplecount < kbest) {
-	  pos = samplecount;
-	  values[pos] = val;
+    pos = samplecount;
+    values[pos] = val;
   } else if (val < values[kbest-1]) {
     pos = kbest-1;
     values[pos] = val;
@@ -102,11 +102,11 @@ static void clear() {
   int *cptr, *cend;
   int incr = cache_block/sizeof(int);
   if (!cache_buf) {
-	  cache_buf = malloc(cache_bytes);
-	  if (!cache_buf) {
-	    fprintf(stderr, "Fatal error. Malloc returned null when trying to clear cache\n");
-	    exit(1);
-	  }
+    cache_buf = malloc(cache_bytes);
+    if (!cache_buf) {
+      fprintf(stderr, "Fatal error. Malloc returned null when trying to clear cache\n");
+      exit(1);
+    }
   }
   cptr = (int *) cache_buf;
   cend = cptr + cache_bytes/sizeof(int);
@@ -149,7 +149,7 @@ double fcyc(test_funct f, void *argp) {
     int i;
     printf(" %d smallest values: [", kbest);
     for (i = 0; i < kbest; i++)
-	    printf("%.0f%s", values[i], i==kbest-1 ? "]\n" : ", ");
+      printf("%.0f%s", values[i], i==kbest-1 ? "]\n" : ", ");
   }
 #endif
   result = values[0];
@@ -180,11 +180,11 @@ void set_fcyc_clear_cache(int clear) {
  */
 void set_fcyc_cache_size(int bytes) {
   if (bytes != cache_bytes) {
-	  cache_bytes = bytes;
-	  if (cache_buf) {
-	    free(cache_buf);
-	    cache_buf = NULL;
-	  }
+    cache_bytes = bytes;
+    if (cache_buf) {
+      free(cache_buf);
+      cache_buf = NULL;
+    }
   }
 }
 
