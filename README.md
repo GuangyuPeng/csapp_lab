@@ -4,4 +4,5 @@
 
 ## 目录
 
-* [`shlab/`](/shlab/)：shell实验。C语言实现一个简易shell程序tsh（Tiny shell）。
+* [`shlab/`](/shlab/)：shell实验。C语言实现一个简易shell程序tsh（Tiny shell）；
+* [`malloclab/`](/malloclab/)：malloc实验。C语言实现malloc堆区动态内存分配器。
