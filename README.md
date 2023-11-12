@@ -4,5 +4,6 @@
 
 ## 目录
 
-* [`shlab/`](/shlab/)：shell实验。C语言实现一个简易shell程序tsh（Tiny shell）；
-* [`malloclab/`](/malloclab/)：malloc实验。C语言实现malloc堆区动态内存分配器。
+* [`shlab/`](/shlab/)：shell实验。实现一个简易的shell程序tsh（Tiny shell）；
+* [`malloclab/`](/malloclab/)：malloc实验。实现一个malloc堆区动态内存分配器；
+* [`proxylab/`](/proxylab/)：proxy实验。实现一个Linux上的http代理程序proxy。
